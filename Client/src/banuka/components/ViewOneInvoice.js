@@ -648,8 +648,8 @@ export default class ViewInvoice extends Component {
                     </MDBRow>
 
                     <MDBRow>
-                      <MDBCol className="col-md-8 col-8"></MDBCol>
-                      <MDBCol className="col-md-4 col-4 text-right">
+                      <MDBCol className="col-md-7 col-7"></MDBCol>
+                      <MDBCol className="col-md-5 col-5 text-right">
                         <NavLink to="/banuka/view">
                           <MDBBtn
                             type="reset"
@@ -666,11 +666,14 @@ export default class ViewInvoice extends Component {
                         >
                           Update Invoice
                         </MDBBtn>
-                        {this.state.showErrorMessageUnderSaveButton ? (
-                          <ErrorMessageBelowSaveButton />
-                        ) : (
-                          <p></p>
-                        )}
+
+                        <MDBBtn
+                          type="button"
+                          className="btn btn-danger btn-sm"
+                          color="red"
+                        >
+                          Delete
+                        </MDBBtn>
                       </MDBCol>
                     </MDBRow>
                   </form>
