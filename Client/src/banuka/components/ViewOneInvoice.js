@@ -89,13 +89,12 @@ export default class ViewInvoice extends Component {
 
   componentDidMount() {
     const itemDetails = {
-      itemID: this.state.itemID,
-      itemName: this.state.itemID,
-      qty: this.state.qty,
-      unitPrice: "unit",
-      linePrice: "total"
+      itemID: "A",
+      itemName: "5",
+      qty: "50",
+      unitPrice: "A",
+      linePrice: "5"
     };
-
 
     //load data to array from database so they will be shown in the invoice update process
     this.setState({
@@ -218,6 +217,7 @@ export default class ViewInvoice extends Component {
   onSubmit(e) {
     e.preventDefault();
 
+    alert(this.state.rows);
 
     const vendorName = this.state.vendorName.toString();
     const invoiceDate = this.state.invoiceDate;
@@ -650,7 +650,7 @@ export default class ViewInvoice extends Component {
                     <MDBRow>
                       <MDBCol className="col-md-8 col-8"></MDBCol>
                       <MDBCol className="col-md-4 col-4 text-right">
-                        <NavLink to="/banuka/dashboard">
+                        <NavLink to="/banuka/view">
                           <MDBBtn
                             type="reset"
                             className="btn btn-secondary btn-sm"
@@ -664,7 +664,7 @@ export default class ViewInvoice extends Component {
                           type="submit"
                           className="btn btn-success btn-sm"
                         >
-                          Save
+                          Update Invoice
                         </MDBBtn>
                         {this.state.showErrorMessageUnderSaveButton ? (
                           <ErrorMessageBelowSaveButton />
