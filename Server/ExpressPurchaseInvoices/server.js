@@ -19,6 +19,7 @@ const Routes = express.Router();
 
 //DB modals
 let invoicesDB = require("./models/CreateInvoices");
+let ItemsDB = require('./models/ItemsModel');
 
 
 app.listen(PORT, () => {
@@ -37,7 +38,7 @@ connection.once("open", () => {
 
  
 
-//end-point-1 -GET ALL
+//end-point-1 -GET ALL Invoices
 Routes.route("/").get((req, res) => {
   invoicesDB.find((err, invoices) => {
     if (err) {
@@ -48,7 +49,22 @@ Routes.route("/").get((req, res) => {
   });
 });
 
-//end-point-2 - GET BY ID
+
+//end-point for getting items
+Routes.route('/items').get((req, res) => {
+  ItemsDB.find((err, items) => {
+    if(err){
+      res.status(400).send("Items not found");
+    }else{
+      res.json(items);
+    }
+  });
+});
+
+
+
+
+// end-point-2 - GET BY ID
 Routes.route("/:id").get((req, res) => {
   let id = req.params.id;
   invoicesDB.findById(id, (err, invoice) => {
@@ -59,6 +75,7 @@ Routes.route("/:id").get((req, res) => {
     }
   });
 });
+
 
 //end-point-3 - CREATE
 Routes.route("/create").post((req, res) => {
