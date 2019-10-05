@@ -19,7 +19,7 @@ import {
 // error messages
 import ItemNotSelectedWarning from "./warning";
 import ErrorMessageBelowSaveButton from "./errorMessageBelowSaveButton";
-import { ar } from "date-fns/locale";
+
 
 const styles = {
   errorVendor: {

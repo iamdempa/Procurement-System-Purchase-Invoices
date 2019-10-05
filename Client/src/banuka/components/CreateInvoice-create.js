@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 
-import "react-datepicker/dist/react-datepicker.css";
-
 import axios from "axios";
 
 // import DummyData from '../dummyData/dataSet';
