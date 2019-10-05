@@ -1,0 +1,186 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "2.5.2",
+    "title": "API Documentation - Vendor Management",
+    "description": "Created by Asiri Hewage IT17094078",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "host": "localhost:3001",
+  "basePath": "/",
+  "tags": [
+    {
+      "name": "Vendors",
+      "description": "API for vendors in the system"
+    }
+  ],
+  "schemes": [
+    "http"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/vendors/": {
+      "post": {
+        "tags": [
+          "Vendors"
+        ],
+        "description": "Create new vendor in system",
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "body",
+            "description": "Vendor that we want to create",
+            "schema": {
+              "$ref": "#/definitions/Vendor"
+            }
+          }
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "responses": {
+          "200": {
+            "description": "New vendor is created",
+            "schema": {
+              "$ref": "#/definitions/Vendor"
+            }
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Vendors"
+        ],
+        "summary": "Get all vendors in system",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/Vendor"
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/vendors/{vendorId}": {
+      "parameters": [
+        {
+          "name": "vendorId",
+          "in": "path",
+          "required": true,
+          "description": "ID of vendor that we want to find",
+          "type": "string"
+        }
+      ],
+      "get": {
+        "tags": [
+          "Vendors"
+        ],
+        "summary": "Get vendor with given ID",
+        "responses": {
+          "200": {
+            "description": "Vendor is found",
+            "schema": {
+              "$ref": "#/definitions/Vendor"
+            }
+          }
+        }
+      },
+      "delete": {
+        "summary": "Delete vendor with given ID",
+        "tags": [
+          "Vendors"
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendor is deleted",
+            "schema": {
+              "$ref": "#/definitions/Vendor"
+            }
+          }
+        }
+      },
+      "put": {
+        "summary": "Update vendor with give ID",
+        "tags": [
+          "Vendors"
+        ],
+        "parameters": [
+          {
+            "name": "vendor",
+            "in": "body",
+            "description": "Vendor with new values of properties",
+            "schema": {
+              "$ref": "#/definitions/Vendor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Vendor is updated",
+            "schema": {
+              "$ref": "#/definitions/Vendor"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Vendor": {
+      "required": [
+        "vendorEmail",
+        "vendorCode"
+      ],
+      "properties": {
+		"vendorCode":  {"type": "String"},
+        "vendorName":  {"type": "String"},
+		"vendorEmail": { "type": "String"},
+		"vendorPaymentID": { "type": "String"},
+		"vendorContactPerson": { "type": "String"},
+		"vendorDescription": { "type": "String"},
+		"vendorAddress": { "type": "String"},
+		"vendorCountry": { "type": "String"},
+		"vendorContactNumber": { "type": "Number"},
+		"vendorTagline": { "type": "String"},
+		"vendorImage": {"type": "String"}
+      }
+    },
+        "Item": {
+      "required": [
+        "itemCode",
+        "itemName"
+      ],
+      "properties": {
+			"itemCode": { "type": "String"},
+			"itemName": { "type": "String"},
+			"description": { "type": "String"},
+			"untiPrice": { "type": "Number"},
+			"vendor": { "type": "Vendor"},
+			"dateAdded" : {"type": "Date"}
+      }
+    },
+	        "User": {
+      "required": [
+        "itemCode",
+        "itemName"
+      ],
+      "properties": {
+			"itemCode": { "type": "String"},
+			"itemName": { "type": "String"},
+			"description": { "type": "String"},
+			"untiPrice": { "type": "Number"},
+			"vendor": { "type": "Vendor"},
+			"dateAdded" : {"type": "Date"}
+      }
+    }
+  }
+}
