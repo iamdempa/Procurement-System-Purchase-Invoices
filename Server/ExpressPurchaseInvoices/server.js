@@ -152,7 +152,7 @@ Routes.route("/update/alt/:id").post((req, res) => {
 });
 
 //end-point-6
-Routes.route('/delete/:id').get((req, res) => {
+Routes.route('/delete/:id').delete((req, res) => {
   let id = req.params.id;
   invoicesDB.findByIdAndRemove(id, (err, deleted) => {
     if(err){

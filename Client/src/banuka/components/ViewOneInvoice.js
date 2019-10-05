@@ -3,6 +3,9 @@ import SideNavigation from "./sideNavigation";
 import BreadCrumb from "./BreadcrumSection";
 import axios from "axios";
 
+import { confirmAlert } from "react-confirm-alert";
+import "react-confirm-alert/src/react-confirm-alert.css";
+
 import { NavLink } from "react-router-dom";
 
 import {
@@ -70,6 +73,7 @@ export default class ViewInvoice extends Component {
 
     this.state = {
       invoiceID: "",
+      invoiceIDFromPropsDotParams: "",
       vendorName: "",
       itemID: "",
       itemName: "",
@@ -523,8 +527,9 @@ export default class ViewInvoice extends Component {
         )
         .then(res => {
           console.log(res.data);
-        }).then(
-          setTimeout(function () { 
+        })
+        .then(
+          setTimeout(function() {
             window.location.reload();
           }, 2000)
         )
@@ -541,11 +546,40 @@ export default class ViewInvoice extends Component {
     });
   }
 
+  //get vendors on the dropdown
   getVendors() {
     return this.state.vendors.map((vendor, id) => {
       return <ShowVendors currentVendor={vendor} key={id} />;
     });
   }
+
+  //delete an invoice
+  deleteInvoice = (e, invoiceID) => {
+    e.preventDefault();
+    confirmAlert({
+      title: "Confirm to submit",
+      message: "Are you sure to do this.",
+      buttons: [
+        {
+          label: "Yes",
+          onClick: () =>
+            axios
+              .delete(
+                "http://localhost:4005/purchaseinvoices/delete/" + invoiceID
+              )
+              .then(res => {
+                console.log(res.data);
+              })
+              .catch(err => {
+                console.log(err);
+              })
+        },
+        {
+          label: "No"
+        }
+      ]
+    });
+  };
 
   render() {
     return (
@@ -588,6 +622,8 @@ export default class ViewInvoice extends Component {
                           type="text"
                           id="defaultFormRegisterNameEx"
                           className="form-control"
+                          value={this.props.match.params.id}
+                          disabled
                         />
                         <br />
                         <label
@@ -922,6 +958,9 @@ export default class ViewInvoice extends Component {
                           type="button"
                           className="btn btn-danger btn-sm"
                           color="red"
+                          onClick={e =>
+                            this.deleteInvoice(e, this.state.invoiceID)
+                          }
                         >
                           Delete
                         </MDBBtn>

@@ -177,7 +177,7 @@ export default class ParentComponent extends Component {
             <th>Billing Address</th>
             <th>Contact Person</th>
             <th>Total Price (R.s)</th>
-            <th></th>
+            <th><i className="fa fa-cog"></i></th>
           </tr>
         </MDBTableHead>
         <MDBTableBody>{allItemRows}</MDBTableBody>

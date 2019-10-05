@@ -442,7 +442,9 @@ export default class CreateInvoiceForm extends Component {
         .then(res => {
           console.log(res.data);
         }).then(
-          window.location.reload()
+          setTimeout(function () { 
+            window.location.reload();
+          }, 2000)
         )
         .catch(err => {
           console.log(err);
